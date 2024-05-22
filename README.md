@@ -14,19 +14,20 @@ Para instalar o Stress Test, você precisa ter o Go instalado em sua máquina. V
 
 Uma vez que o Go esteja instalado, você pode baixar e instalar o Stress Test com o seguinte comando:
 
-\`\`\`bash
-go get github.com/renatonasc/stress_test
-\`\`\`
+```bash
+go get github.com/renatonasc/stresstest
+```
 
 ## Uso
 
 Para executar um teste de carga em um serviço web, use o seguinte comando:
 
 Com Docker:
-\`\`\`bash
+```bash
 docker build -t stresstest .
+
 docker run stresstest3 --url=http://cameras.renatonasc.com --concurrency=20 --requests=100 
-\`\`\`
+```
 
 Este comando irá gerar 1000 solicitações para `http://seuservico.com` com uma concorrência de 20 solicitações simultâneas.
 
