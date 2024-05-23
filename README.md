@@ -26,7 +26,7 @@ Com Docker:
 ```bash
 docker build -t stresstest .
 
-docker run stresstest3 --url=http://cameras.renatonasc.com --concurrency=20 --requests=100 
+docker run stresstest --url=http://cameras.renatonasc.com --concurrency=20 --requests=100 
 ```
 
 Este comando irá gerar 1000 solicitações para `http://seuservico.com` com uma concorrência de 20 solicitações simultâneas.
