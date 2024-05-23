@@ -72,6 +72,12 @@ func (u *TestUrlUseCase) Execute() (*entity.RequestTestResult, error) {
 
 func worker(workerId int, data chan *entity.RequestResult, wg *sync.WaitGroup) {
 	ctx := context.Background()
+	client := &http.Client{
+		Transport: &http.Transport{},
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return nil
+		},
+	}
 	for x := range data {
 
 		req, err := http.NewRequestWithContext(ctx, x.Request.Method, x.Request.Url, nil)
@@ -81,7 +87,7 @@ func worker(workerId int, data chan *entity.RequestResult, wg *sync.WaitGroup) {
 			continue
 		}
 		x.TimeStart = time.Now()
-		resp, err := http.DefaultClient.Do(req)
+		resp, err := client.Do(req)
 		if err != nil {
 			x.TimeEnd = time.Now()
 			x.StatusCode = 0
